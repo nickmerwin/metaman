@@ -1,0 +1,1 @@
+sudo ln -s $PWD/bin/metaman /usr/bin/metaman
