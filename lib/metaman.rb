@@ -10,7 +10,7 @@ module Metaman
     def extract(root='.', output_path='keywords.csv')
       puts "Writing to #{output_path}"
       csv = File.open(output_path, 'w')
-      csv.write "Filename, Keywords\n"
+      csv.write "Filename, Caption, Keywords, Artist, Copyright\n"
 
       Dir["#{root}/**/*"].each do |path|
         next if ['.','..'].include?(path)
@@ -20,8 +20,8 @@ module Metaman
         file = File.basename path
 
         unless meta.keywords.nil?
-          puts "=> #{file}"
-          csv.write "#{file}, #{meta.keywords.join ';'}\n"
+            puts "=> #{file}"
+          csv.write "#{file}, #{meta.imagedescription}, #{meta.keywords.join ';'}, #{meta.artist}, #{meta.copyright}\n"
         end
       end
 
